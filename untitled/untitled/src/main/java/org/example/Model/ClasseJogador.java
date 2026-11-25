@@ -1,5 +1,9 @@
 package org.example.Model;
 
 public enum ClasseJogador {
-    ESPADA,ARCO,TANK,MAGO,CURANDEIRO;
+    ESPADA,
+    ARCO,
+    TANK,
+    MAGO,
+    CURANDEIRO
 }

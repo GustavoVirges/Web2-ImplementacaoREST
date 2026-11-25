@@ -1,18 +1,25 @@
 package org.example.Model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "item")
+@Table(name = "itens")
 public class Item {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item")
     private int id;
 
     @Column(name = "nome")
-    private String nomeItem;
+    private String nome;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "raridade")
@@ -21,14 +28,31 @@ public class Item {
     @Column(name = "quantidade")
     private int quantidade;
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getNomeItem() { return nomeItem; }
-    public void setNomeItem(String nomeItem) { this.nomeItem = nomeItem; }
+    public String getNome() {
+        return nome;
+    }
 
-    public RaridadeItem getRaridade() { return raridade; }
-    public void setRaridade(RaridadeItem raridade) { this.raridade = raridade; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public int getQuantidade() { return quantidade; }
-    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+    public RaridadeItem getRaridade() {
+        return raridade;
+    }
+
+    public void setRaridade(RaridadeItem raridade) {
+        this.raridade = raridade;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 }

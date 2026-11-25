@@ -1,20 +1,31 @@
 package org.example.Model;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
-@Table(name = "jogador")
+@Table(name = "jogadores")
 public class Jogador {
 
     @Id
-    @Column(name = "id_jogador")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_jogador")
     private int id;
 
     @Column(name = "nome")
-    private String nomeJogador;
+    private String nome;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_jogador")
@@ -30,21 +41,47 @@ public class Jogador {
     @Column(name = "classe")
     private ClasseJogador classe;
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getNomeJogador() { return nomeJogador; }
-    public void setNomeJogador(String nomeJogador) { this.nomeJogador = nomeJogador; }
+    public String getNome() {
+        return nome;
+    }
 
-    public List<Item> getItens() { return itens; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public void adicionarItem(Item item) { itens.add(item); }
+    public List<Item> getItens() {
+        return itens;
+    }
 
-    public int getNivel() { return nivel; }
-    public void setNivel(int nivel) { this.nivel = nivel; }
+    public void adicionarItem(Item item) {
+        itens.add(item);
+    }
 
-    public String getCla() { return cla; }
-    public void setCla(String cla) { this.cla = cla; }
+    public int getNivel() {
+        return nivel;
+    }
 
-    public ClasseJogador getClasse() { return classe; }
-    public void setClasse(ClasseJogador classe) { this.classe = classe; }
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getCla() {
+        return cla;
+    }
+
+    public void setCla(String cla) {
+        this.cla = cla;
+    }
+
+    public ClasseJogador getClasse() {
+        return classe;
+    }
+
+    public void setClasse(ClasseJogador classe) {
+        this.classe = classe;
+    }
 }
