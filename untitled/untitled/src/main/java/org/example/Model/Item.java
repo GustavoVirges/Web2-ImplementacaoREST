@@ -3,22 +3,22 @@ package org.example.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "item")
+@Table(name = "itens")
 public class Item {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item")
     private int id;
 
-    @Column(name = "nome")
+    @Column(name = "nome_item", nullable = false, length = 60)
     private String nomeItem;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "raridade")
+    @Column(name = "raridade", nullable = false, length = 20)
     private RaridadeItem raridade;
 
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private int quantidade;
 
     public int getId() { return id; }
