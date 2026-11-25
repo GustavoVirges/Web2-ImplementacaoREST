@@ -9,7 +9,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jogadores-api" target="21" />
+      <module name="untitled" target="21" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jogadores-api" options="-parameters" />
+    </option>
   </component>
 </project>
