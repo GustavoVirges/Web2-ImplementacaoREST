@@ -1,12 +1,13 @@
 package org.example.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Optional;
+
 import org.example.model.Jogador;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Repository
 public class JogadorDaoJpa implements JogadorDao {
@@ -37,18 +38,27 @@ public class JogadorDaoJpa implements JogadorDao {
 
     @Override
     public List<Jogador> findAll() {
-        return em.createQuery("select distinct j from Jogador j left join fetch j.itens order by j.id", Jogador.class)
-                .getResultList();
+        return em.createQuery(
+                "SELECT DISTINCT j FROM Jogador j " +
+                "LEFT JOIN FETCH j.itens " +
+                "ORDER BY j.id",
+                Jogador.class
+        ).getResultList();
     }
 
     @Override
     public boolean existsByNome(String nome, Long ignorarId) {
+
         Long total = em.createQuery(
-                        "select count(j) from Jogador j where lower(j.nomeJogador) = lower(:nome) and j.id <> :ignorarId",
-                        Long.class)
-                .setParameter("nome", nome)
-                .setParameter("ignorarId", ignorarId)
-                .getSingleResult();
+                "SELECT COUNT(j) FROM Jogador j " +
+                "WHERE LOWER(j.nomeJogador) = LOWER(:nome) " +
+                "AND j.id <> :ignorarId",
+                Long.class
+        )
+        .setParameter("nome", nome)
+        .setParameter("ignorarId", ignorarId)
+        .getSingleResult();
+
         return total > 0;
     }
 }

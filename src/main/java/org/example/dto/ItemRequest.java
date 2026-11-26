@@ -1,9 +1,15 @@
 package org.example.dto;
 
-import jakarta.validation.constraints.*;
 import org.example.model.RaridadeItem;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 public record ItemRequest(
+
         @NotBlank(message = "é obrigatório")
         @Size(max = 60, message = "deve ter no máximo 60 caracteres")
         String nome,
@@ -17,5 +23,7 @@ public record ItemRequest(
 
         @NotNull(message = "é obrigatório")
         @Positive(message = "deve ser positivo")
-        Long jogadorId) {
+        Long jogadorId
+
+) {
 }

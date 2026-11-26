@@ -29,8 +29,7 @@ public class Jogador {
 
     @OneToMany(
         mappedBy = "jogador",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
+        cascade = CascadeType.ALL
     )
     private List<Item> itens = new ArrayList<>();
 
@@ -61,14 +60,29 @@ public class Jogador {
     }
 
     public void adicionarItem(Item item) {
-        if (item != null && !itens.contains(item)) {
-            itens.add(item);
-            item.setJogador(this);
+        if (item == null) {
+            return;
         }
+
+        Jogador jogadorAtual = item.getJogador();
+
+        if (jogadorAtual != null && jogadorAtual != this) {
+            jogadorAtual.itens.remove(item);
+        }
+
+        if (!itens.contains(item)) {
+            itens.add(item);
+        }
+
+        item.setJogador(this);
     }
 
     public void removerItem(Item item) {
-        if (itens.remove(item)) {
+        if (item == null) {
+            return;
+        }
+
+        if (itens.remove(item) && item.getJogador() == this) {
             item.setJogador(null);
         }
     }
