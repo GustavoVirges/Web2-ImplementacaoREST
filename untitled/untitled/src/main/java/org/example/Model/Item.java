@@ -1,3 +1,4 @@
+
 package org.example.Model;
 
 import javax.persistence.Column;
@@ -18,13 +19,8 @@ public class Item {
     @Column(name = "id_item")
     private int id;
 
-<<<<<<< HEAD
-    @Column(name = "nome")
-    private String nome;
-=======
     @Column(name = "nome_item", nullable = false, length = 60)
     private String nomeItem;
->>>>>>> 8de7a54db06588e33a2437ac42b62756f018822c
 
     @Enumerated(EnumType.STRING)
     @Column(name = "raridade", nullable = false, length = 20)
@@ -37,12 +33,12 @@ public class Item {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeItem() {
+        return nomeItem;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeItem(String nomeItem) {
+        this.nomeItem = nomeItem;
     }
 
     public RaridadeItem getRaridade() {

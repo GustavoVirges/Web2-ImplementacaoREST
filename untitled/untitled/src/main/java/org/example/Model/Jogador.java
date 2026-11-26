@@ -1,3 +1,4 @@
+
 package org.example.Model;
 
 import java.util.ArrayList;
@@ -24,13 +25,8 @@ public class Jogador {
     @Column(name = "id_jogador")
     private int id;
 
-<<<<<<< HEAD
-    @Column(name = "nome")
-    private String nome;
-=======
     @Column(name = "nome_jogador", nullable = false, length = 60)
     private String nomeJogador;
->>>>>>> 8de7a54db06588e33a2437ac42b62756f018822c
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_jogador", nullable = false)
@@ -50,12 +46,12 @@ public class Jogador {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeJogador() {
+        return nomeJogador;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeJogador(String nomeJogador) {
+        this.nomeJogador = nomeJogador;
     }
 
     public List<Item> getItens() {
