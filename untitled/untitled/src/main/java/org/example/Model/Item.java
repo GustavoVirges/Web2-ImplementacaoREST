@@ -18,14 +18,19 @@ public class Item {
     @Column(name = "id_item")
     private int id;
 
+<<<<<<< HEAD
     @Column(name = "nome")
     private String nome;
+=======
+    @Column(name = "nome_item", nullable = false, length = 60)
+    private String nomeItem;
+>>>>>>> 8de7a54db06588e33a2437ac42b62756f018822c
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "raridade")
+    @Column(name = "raridade", nullable = false, length = 20)
     private RaridadeItem raridade;
 
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private int quantidade;
 
     public int getId() {
