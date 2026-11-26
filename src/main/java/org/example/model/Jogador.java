@@ -1,20 +1,19 @@
 
-package org.example.Model;
+package org.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "jogadores")
@@ -23,13 +22,16 @@ public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_jogador")
-    private int id;
+    private Long id;
 
     @Column(name = "nome_jogador", nullable = false, length = 60)
     private String nomeJogador;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_jogador", nullable = false)
+    @OneToMany(
+        mappedBy = "jogador",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
     private List<Item> itens = new ArrayList<>();
 
     @Column(name = "nivel", nullable = false)
@@ -42,7 +44,7 @@ public class Jogador {
     @Column(name = "classe", nullable = false, length = 20)
     private ClasseJogador classe;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,7 +61,16 @@ public class Jogador {
     }
 
     public void adicionarItem(Item item) {
-        itens.add(item);
+        if (item != null && !itens.contains(item)) {
+            itens.add(item);
+            item.setJogador(this);
+        }
+    }
+
+    public void removerItem(Item item) {
+        if (itens.remove(item)) {
+            item.setJogador(null);
+        }
     }
 
     public int getNivel() {
